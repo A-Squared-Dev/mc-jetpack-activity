@@ -1,12 +1,17 @@
-# [Template] Marketing Cloud Journey Builder Activity
+# Jetpack for Journey Builder
+
 Salesforce Marketing Cloud is a powerful marketing automation platform. One of its key features is Journey Builder which enables businesses to build, automate, and optimise customer journeys.
 
-Custom Journey Builder activities provide an opportunity to extend the functionality of Journey Builder by integrating your product's features or custom actions into the marketing automation process.
+Marketing Cloud API provides endpoints that can be useful in a 1-to-1 journey context, which are not available as out-of-the-box activities:
+- [Address: Validate Email](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/validateEmail.html)
+- [Data Events: Upserts a data extension row by key](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/putDataExtensionRowByKey.html)
+- [Interaction: Fire the Event](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/postEvent.html)
+- [Contacts: Delete Contacts by Key](https://developer.salesforce.com/docs/marketing/marketing-cloud/guide/DeleteByContactKeys.html)
 
-> This repository is designed to kickstart the development of custom activities for Salesforce Marketing Cloud Journey Builder, useful for product development and software-as-a-service (SaaS).
+> Unlock these capabilities with Jetpack for Journey Builder, a FREE custom activity to propel your journeys to new heights!
 
-![Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyusrimathews%2Fmc-journey-activity%2Fmain%2Fpackage.json&query=%24.version&label=version&color=bright)
-![License](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2Fyusrimathews%2Fmc-journey-activity%2Fmain%2Fpackage.json&query=%24.license&label=license)
+![Version](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FA-Squared-Dev%2Fmc-jetpack-activity%2Fmain%2Fpackage.json&query=%24.version&label=version&color=bright)
+![License](https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fraw.githubusercontent.com%2FA-Squared-Dev%2Fmc-jetpack-activity%2Fmain%2Fpackage.json&query=%24.license&label=license)
 
 [<img src="https://www.herokucdn.com/deploy/button.svg" height="30">](https://heroku.com/deploy)
 [<img src="https://render.com/images/deploy-to-render-button.svg" height="30">](https://render.com/deploy)
@@ -40,7 +45,7 @@ npm start
 | NODE_VERSION | Required depending on hosting. | 🤔 | 18.15.0 |
 | PORT | Express server port. | ❌ |  |
 | VUE_APP_URL | Express server URL. | ✅ | https://xyz.onrender.com/ |
-| VUE_APP_TITLE | Journey Builder activity name. | ✅ | Example Activity |
+| VUE_APP_TITLE | Journey Builder activity name. | ✅ | Jetpack [Staging] |
 | SFMC_MID |  Business Unit MID(s) where the Installed Packaged is enabled. | ✅ | 500042165 |
 | SFMC_TENANT |  Business Unit Tenant Subdomain(s). | ✅ | mcvnkblwyrzgidx3m-u2qpk-tsfh |
 | SFMC_CLIENT |  Installed Package Client ID(s). | ✅ | zp9hxgqo84e2nyz26rpkp3m9 |
