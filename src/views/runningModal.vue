@@ -13,6 +13,6 @@ import customActivity from '@/mixins/customActivity';
 
 export default {
   name: 'Modal',
-  mixins: [customActivity]
+  mixins: [ customActivity ]
 }
 </script>

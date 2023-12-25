@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
-const configModal = () => import(/* webpackChunkName: "configModal" */ '@/components/configModal.vue');
-const runningHover = () => import(/* webpackChunkName: "runningHover" */ '@/components/runningHover.vue');
-const runningModal = () => import(/* webpackChunkName: "runningModal" */ '@/components/runningModal.vue');
+const configModal = () => import(/* webpackChunkName: "configModal" */ '@/views/configModal.vue');
+const runningHover = () => import(/* webpackChunkName: "runningHover" */ '@/views/runningHover.vue');
+const runningModal = () => import(/* webpackChunkName: "runningModal" */ '@/views/runningModal.vue');
 
 const router = createRouter({
   history: createWebHistory(),

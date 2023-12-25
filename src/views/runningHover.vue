@@ -9,6 +9,6 @@ import customActivity from '@/mixins/customActivity';
 
 export default {
   name: 'Hover',
-  mixins: [customActivity]
+  mixins: [ customActivity ]
 }
 </script>
