@@ -6,13 +6,13 @@
     </div>
   </div>
 
-  <attributeRepeater :dataAttributes="upsert_dataAttributes" />
+  <attributeRepeater :dataAttributes="upsert_dataAttributes" :errorObject="this.v$.upsert_dataAttributes" />
 </template>
 
 <script>
 import attributeRepeater from '@/components/controllers/attributeRepeater';
 import { useVuelidate } from '@vuelidate/core';
-import { required } from '@vuelidate/validators';
+import { helpers, required } from '@vuelidate/validators';
 
 export default {
   setup () {
@@ -41,7 +41,13 @@ export default {
   },
   validations () {
     return {
-      upsert_externalKey: { required }
+      upsert_externalKey: { required },
+      upsert_dataAttributes: {
+        $each: helpers.forEach({
+          key: { required },
+          value: { required }
+        })
+      }
     }
   }
 }

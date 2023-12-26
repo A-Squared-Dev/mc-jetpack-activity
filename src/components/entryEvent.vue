@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <attributeRepeater :dataAttributes="entry_dataAttributes" />
+  <attributeRepeater :dataAttributes="entry_dataAttributes" :errorObject="this.v$.entry_dataAttributes" />
 
   <div class="field">
     <label class="label">Contact Key</label>
@@ -19,7 +19,7 @@
 <script>
 import attributeRepeater from '@/components/controllers/attributeRepeater';
 import { useVuelidate } from '@vuelidate/core';
-import { required } from '@vuelidate/validators';
+import { helpers, required } from '@vuelidate/validators';
 
 export default {
   setup () {
@@ -58,6 +58,12 @@ export default {
   validations () {
     return {
       entry_eventDefinitionKey: { required },
+      entry_dataAttributes: {
+        $each: helpers.forEach({
+          key: { required },
+          value: { required }
+        })
+      },
       entry_contactKey: { required }
     }
   }

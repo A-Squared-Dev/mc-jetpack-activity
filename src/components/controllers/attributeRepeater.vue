@@ -7,16 +7,16 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="(attribute, index) in dataAttributes" :index="index" :key="attribute.key">
+      <tr v-for="(attribute, index) in dataAttributes" :key="index">
         <td style="width: 50%;">
           <div class="control">
-            <input class="input is-small" type="text" v-model="attribute.key" :class="[ this.v$.dataAttributes.$each.$response.$errors[index].key.length ? 'is-danger' : '' ]" />
+            <input class="input is-small" type="text" v-model="attribute.key" :class="[ errorObject.$each.$response.$errors[index].key.length ? 'is-danger' : '' ]" />
           </div>
         </td>
         <td style="vertical-align: middle;">&#10141;</td>
         <td style="width: 50%;">
           <div class="control">
-            <input class="input is-small" type="text" v-model="attribute.value" :class="[ this.v$.dataAttributes.$each.$response.$errors[index].value.length ? 'is-danger' : '' ]" />
+            <input class="input is-small" type="text" v-model="attribute.value" :class="[ errorObject.$each.$response.$errors[index].value.length ? 'is-danger' : '' ]" />
           </div>
         </td>
         <td style="width: 16px; padding-left: 0px;">
@@ -28,7 +28,7 @@
       <tr>
         <td colspan="4" style="padding-right: 0px;">
           <div class="buttons is-right">
-            <button class="button is-small is-link is-light" v-on:click="addAttribute" :disabled="this.v$.dataAttributes.$invalid">Add Attribute</button>
+            <button class="button is-small is-link is-light" v-on:click="addAttribute" :disabled="errorObject.$invalid">Add Attribute</button>
           </div>
         </td>
       </tr>
@@ -58,14 +58,8 @@ fieldset[disabled] .button.is-link {
 </style>
 
 <script>
-import { useVuelidate } from '@vuelidate/core';
-import { helpers, required } from '@vuelidate/validators';
-
 export default {
-  props: [ 'dataAttributes' ],
-  setup () {
-    return { v$: useVuelidate() }
-  },
+  props: [ 'dataAttributes', 'errorObject' ],
   methods: {
     addAttribute (element) {
       element.preventDefault();
@@ -79,16 +73,6 @@ export default {
       element.preventDefault();
 
       this.dataAttributes.splice(index, 1);
-    }
-  },
-  validations () {
-    return {
-      dataAttributes: {
-        $each: helpers.forEach({
-          key: { required },
-          value: { required }
-        })
-      }
     }
   }
 }
