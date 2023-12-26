@@ -2,21 +2,7 @@
   <div class="field">
     <label class="label">Email Address</label>
     <div class="control">
-      <div class="select is-small is-fullwidth" :class="[
-        this.v$.validation_email.$errors.length ? 'is-danger' : '',
-        !dynamic_options ? 'is-loading' : ''
-      ]">
-        <select v-model="validation_email" :disabled="!dynamic_options.length">
-
-          <option selected disabled hidden value="" v-if="!dynamic_options">Loading...</option>
-          <option selected disabled hidden value="" v-if="!dynamic_options.length">No fields available...</option>
-          <option selected disabled hidden value="" v-if="dynamic_options.length">Select a field...</option>
-
-          <option v-for="option in dynamic_options" :value="option.key" :key="option.key">
-            {{ option.name }}
-          </option>
-        </select>
-      </div>
+      <schemaDropdown v-model="validation_email" :errorObject="this.v$.validation_email" :typesArray="['Text', 'EmailAddress']" />
     </div>
   </div>
 
@@ -56,6 +42,7 @@
 </style>
 
 <script>
+import schemaDropdown from '@/components/controllers/schemaDropdown';
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 
@@ -63,6 +50,7 @@ export default {
   setup () {
     return { v$: useVuelidate() }
   },
+  components: { schemaDropdown },
   computed: {
     validation_email: {
       get () {
@@ -80,23 +68,6 @@ export default {
       set (value) {
         this.$store.commit('updateConfigModal', { key: 'validation_types', value });
         this.v$.validation_types.$touch();
-      }
-    },
-    dynamic_options () {
-      var schema_array = this.$store.state.jbSchema.schema || false;
-      var types_array = ['Text', 'EmailAddress', 'Phone', 'Date'];
-
-      if (schema_array) {
-        return schema_array.filter(function (object) {
-          var key_format = object.key.replace(/[{}/"]/g, '');
-          var key_split = key_format.split('.');
-
-          object.key = `{{${key_split[0]}.${key_split[1]}."${key_split[2]}"}}`;
-
-          return types_array.includes(object.type);
-        });
-      } else {
-        return schema_array;
       }
     }
   },
