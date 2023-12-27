@@ -3,13 +3,15 @@
     <input @keyup="searchDEs" />
     <pre>{{ this.$data }}</pre>
 
-    <typeTiles />
+    <form id="configForm">
+      <div class="field">
+        <typeTiles />
+      </div>
 
-    <form id="configForm" class="pt-5">
-      <validateEmail v-if="configType === 1" />
-      <upsertDE v-if="configType === 2" />
-      <entryEvent v-if="configType === 3" />
-      <deleteContact v-if="configType === 4" />
+      <validateEmail v-if="config_type === 1" />
+      <upsertDE v-if="config_type === 2" />
+      <entryEvent v-if="config_type === 3" />
+      <deleteContact v-if="config_type === 4" />
 
       <div v-if="isDevelopment">
         <div class="field is-grouped is-grouped-centered">
