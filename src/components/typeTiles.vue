@@ -7,6 +7,7 @@
       </a>
     </div>
   </div>
+  <p class="help is-danger mt-0 mb-1" v-if="this.v$.config_type.$errors.length">Select a configuration type.</p>
 </template>
 
 <style>
@@ -36,8 +37,14 @@ a.box.disabled {
 </style>
 
 <script>
+import { useVuelidate } from '@vuelidate/core';
+import { required } from '@vuelidate/validators';
 import configTypes from '../data/configTypes';
+
 export default {
+  setup () {
+    return { v$: useVuelidate() }
+  },
   data () {
     return {
       configTypes: configTypes
@@ -58,7 +65,7 @@ export default {
       element.preventDefault();
 
       this.config_type = value;
-      // this.scrollToForm();
+      // document.getElementById("configForm").scrollIntoView({ behavior: 'smooth' });
     },
     tileClasses (item, currentItem) {
       var defaultClasses = 'tile is-child box';
@@ -71,9 +78,11 @@ export default {
       } else {
         return defaultClasses;
       }
-    },
-    scrollToForm () {
-      document.getElementById("configForm").scrollIntoView({ behavior: 'smooth' });
+    }
+  },
+  validations () {
+    return {
+      config_type: { required }
     }
   }
 }
