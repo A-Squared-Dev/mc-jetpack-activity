@@ -18,7 +18,7 @@ const json = {
   lang: {
     'en-US': {
       name: VUE_APP_TITLE,
-      description: 'Sample Marketing Cloud Journey Builder Activity'
+      description: 'A custom activity for Marketing Cloud Journey Builder'
     }
   },
   arguments: {
@@ -53,15 +53,39 @@ const json = {
     arguments: {
       execute: {
         inArguments: [{
-          sample_input: {
+          config_type: {
+            dataType: 'number',
+            direction: 'in'
+          },
+          validation_email: {
             dataType: 'text',
             direction: 'in'
           },
-          dynamic_select: {
+          validation_types: {
             dataType: 'text',
             direction: 'in'
           },
-          optional_text: {
+          upsert_externalKey: {
+            dataType: 'text',
+            direction: 'in'
+          },
+          upsert_dataAttributes: {
+            dataType: 'text',
+            direction: 'in'
+          },
+          entry_eventDefinitionKey: {
+            dataType: 'text',
+            direction: 'in'
+          },
+          entry_dataAttributes: {
+            dataType: 'text',
+            direction: 'in'
+          },
+          entry_contactKey: {
+            dataType: 'text',
+            direction: 'in'
+          },
+          deletion_contactKey: {
             dataType: 'text',
             direction: 'in'
           }

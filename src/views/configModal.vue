@@ -64,9 +64,9 @@ export default {
     }
   },
   computed: {
-    configType: {
+    config_type: {
       get () {
-        return this.$store.state.configType;
+        return this.$store.state.configModal.config_type;
       }
     }
   },

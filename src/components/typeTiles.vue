@@ -1,7 +1,7 @@
 <template>
   <div class="tile is-ancestor mb-0 is-flex-wrap-wrap">
     <div v-for="item in configTypes" :key="item.id" class="tile is-3 is-parent">
-      <a v-on:click="selectType(item.id, $event)" :class="tileClasses(item.id, configType)">
+      <a v-on:click="selectType(item.id, $event)" :class="tileClasses(item.id, config_type)">
         <p class="title is-5 mb-2">{{ item.title }}</p>
         {{ item.description }}
       </a>
@@ -36,19 +36,20 @@ a.box.disabled {
 </style>
 
 <script>
+import configTypes from '../data/configTypes';
 export default {
+  data () {
+    return {
+      configTypes: configTypes
+    }
+  },
   computed: {
-    configType: {
+    config_type: {
       get () {
-        return this.$store.state.configType;
+        return this.$store.state.configModal.config_type;
       },
       set (value) {
-        this.$store.commit('updateConfigType', value);
-      }
-    },
-    configTypes: {
-      get () {
-        return this.$store.state.configTypes;
+        this.$store.commit('updateConfigModal', { key: 'config_type', value });
       }
     }
   },
@@ -56,7 +57,7 @@ export default {
     selectType (value, element) {
       element.preventDefault();
 
-      this.configType = value;
+      this.config_type = value;
       // this.scrollToForm();
     },
     tileClasses (item, currentItem) {
