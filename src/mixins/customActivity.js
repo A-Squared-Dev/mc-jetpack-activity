@@ -156,7 +156,7 @@ export default {
     },
     async clickedNext () {
       const result = await this.v$.$validate();
-      const jbTokens = this.$store.state.jbTokens;
+      const jbTokens = this.jbTokens;
 
       const tokenParams = querystring.stringify({
         stackKey: jbTokens.stackKey,
@@ -168,7 +168,7 @@ export default {
       if (!result) {
         this.postmonger.trigger('ready');
       } else {
-        const configModal = this.$store.state.configModal;
+        const configModal = this.configModal;
         const inArguments = [];
 
         Object.keys(configModal).forEach(key => {
@@ -177,23 +177,23 @@ export default {
           });
         });
 
-        this.postmonger.trigger('updateActivity', {
-          ...this.$store.state.jbActivity,
+        const updateActivity = {
+          ...this.jbActivity,
           metaData: {
-            ...this.$store.state.jbActivity.metaData,
+            ...this.jbActivity.metaData,
             configModal: configModal,
             isConfigured: true
           },
           arguments: {
-            ...this.$store.state.jbActivity.arguments,
+            ...this.jbActivity.arguments,
             execute: {
-              ...this.$store.state.jbActivity.arguments.execute,
+              ...this.jbActivity.arguments.execute,
               url: `${VUE_APP_URL}/execute?${tokenParams}`,
               inArguments: inArguments
             }
           },
           configurationArguments: {
-            ...this.$store.state.jbActivity.configurationArguments,
+            ...this.jbActivity.configurationArguments,
             validate: {
               url: `${VUE_APP_URL}/validate?${tokenParams}`
             },
@@ -201,7 +201,9 @@ export default {
               url: `${VUE_APP_URL}/publish?${tokenParams}`
             }
           }
-        });
+        }
+
+        this.postmonger.trigger('updateActivity', updateActivity);
       }
     },
     destroy () {
