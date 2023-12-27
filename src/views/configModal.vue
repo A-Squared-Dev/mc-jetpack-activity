@@ -83,7 +83,7 @@ export default {
     },
     async searchDEs () {
       try {
-        const request = await fetch('https://mc.s51.marketingcloudapps.com/contactsmeta/fuelapi/data-internal/v1/customobjects?retrievalType=1&$page=1&$pagesize=25&$orderBy=modifiedDate%20DESC%20&$search=%25mo_file%25');
+        const request = await fetch('https://mc.s50.marketingcloudapps.com/contactsmeta/fuelapi/data-internal/v1/customobjects?retrievalType=1&$page=1&$pagesize=25&$orderBy=modifiedDate%20DESC%20&$search=%25mo_file%25');
         const response = await request.json();
 
         console.log(response);
