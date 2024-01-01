@@ -1,13 +1,15 @@
 <template>
-  <div class="tile is-ancestor mb-0 is-flex-wrap-wrap">
-    <div v-for="item in configTypes" :key="item.id" class="tile is-3 is-parent">
-      <a v-on:click="selectType(item.id, $event)" :class="tileClasses(item.id, config_type)">
-        <p class="title is-5 mb-2">{{ item.title }}</p>
-        {{ item.description }}
-      </a>
+  <div class="field">
+    <div class="tile is-ancestor mb-0 is-flex-wrap-wrap">
+      <div v-for="item in configTypes" :key="item.id" class="tile is-3 is-parent">
+        <a v-on:click="selectType(item.id, $event)" class="tile is-child box" :class="tileClasses(item.id, config_type)">
+          <p class="title is-5 mb-2">{{ item.title }}</p>
+          {{ item.description }}
+        </a>
+      </div>
     </div>
+    <p class="help is-danger mt-0 mb-1" v-if="this.v$.config_type.$errors.length">Select a configuration type.</p>
   </div>
-  <p class="help is-danger mt-0 mb-1" v-if="this.v$.config_type.$errors.length">Select a configuration type.</p>
 </template>
 
 <style>
@@ -37,9 +39,9 @@ a.box.disabled {
 </style>
 
 <script>
+import configTypes from '../data/configTypes';
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
-import configTypes from '../data/configTypes';
 
 export default {
   setup () {
@@ -65,18 +67,12 @@ export default {
       element.preventDefault();
 
       this.config_type = value;
-      // document.getElementById("configForm").scrollIntoView({ behavior: 'smooth' });
     },
     tileClasses (item, currentItem) {
-      var defaultClasses = 'tile is-child box';
-
       if (item === currentItem) {
-        return defaultClasses + ' enabled';
-      }
-      else if (item !== currentItem && currentItem) {
-        return defaultClasses + ' disabled';
-      } else {
-        return defaultClasses;
+        return 'enabled';
+      } else if (item !== currentItem && currentItem) {
+        return 'disabled';
       }
     }
   },

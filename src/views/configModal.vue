@@ -1,9 +1,7 @@
 <template>
   <section class="section pt-5">
     <form id="configForm">
-      <div class="field">
-        <typeTiles />
-      </div>
+      <typeTiles />
 
       <validateEmail v-if="configType === 1" />
       <upsertDE v-if="configType === 2" />
