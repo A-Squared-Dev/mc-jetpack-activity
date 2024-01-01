@@ -87,11 +87,11 @@ export default {
       this.jbActivity = payload;
 
       // Required Postmonger trigger requests
+      this.postmonger.trigger('requestEndpoints');
       this.postmonger.trigger('requestTokens');
       this.postmonger.trigger('requestSchema');
 
       // Optional Postmonger trigger requests
-      // this.postmonger.trigger('requestEndpoints');
       // this.postmonger.trigger('requestCulture');
       // this.postmonger.trigger('requestInteractionDefaults');
       // this.postmonger.trigger('requestInteraction');
