@@ -1,8 +1,8 @@
 <template>
   <div class="field">
-    <label class="label">External Key</label>
+    <label class="label">Data Extension</label>
     <div class="control">
-      <input class="input is-small" type="text" v-model="upsert_externalKey" :class="[ this.v$.upsert_externalKey.$errors.length ? 'is-danger' : '' ]" />
+      <dataExtensionSearch :dataExtension="upsert_dataExtension" @update:dataExtension="updateDataExtension" @update:dataExtensionFields="updateDataExtensionFields" :errorObject="this.v$.upsert_dataExtension" />
     </div>
   </div>
 
@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import dataExtensionSearch from '@/components/controllers/dataExtensionSearch';
 import attributeRepeater from '@/components/controllers/attributeRepeater';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required } from '@vuelidate/validators';
@@ -18,7 +19,10 @@ export default {
   setup () {
     return { v$: useVuelidate() }
   },
-  components: { attributeRepeater },
+  components: {
+    dataExtensionSearch,
+    attributeRepeater
+  },
   computed: {
     upsert_dataExtension: {
       get () {
@@ -44,6 +48,42 @@ export default {
       set (value) {
         this.$store.commit('updateConfigModal', { key: 'upsert_dataAttributes', value });
         this.v$.upsert_dataAttributes.$touch();
+      }
+    }
+  },
+  methods: {
+    updateDataExtension (value) {
+      this.upsert_dataExtension = value;
+      this.upsert_dataExtensionFields = []
+      this.upsert_dataAttributes = [{
+        key: null,
+        type: null,
+        required: null,
+        value: null
+      }]
+    },
+    updateDataExtensionFields (value) {
+      this.upsert_dataExtensionFields = value;
+
+      var requiredFields = []
+
+      if (value.length > 0) {
+        for (let i = 0; i < value.length; i++) {
+          if (value[i].IsRequired === 'true') {
+            requiredFields.push(value[i]);
+          }
+        }
+      }
+
+      if (requiredFields.length > 0) {
+        for (let i = 0; i < requiredFields.length; i++) {
+          this.upsert_dataAttributes = [{
+            key: requiredFields[i].Name,
+            type: requiredFields[i].FieldType,
+            required: requiredFields[i].IsRequired,
+            value: null
+          }]
+        }
       }
     }
   },
