@@ -1,6 +1,7 @@
 import { createStore } from 'vuex';
 // import jbSchema from './data/jbSchema';
 // import jbTokens from './data/jbTokens';
+// import jbEndpoints from './data/jbEndpoints';
 // import jbActivity from './data/jbActivity';
 
 export const store = createStore({
@@ -25,6 +26,7 @@ export const store = createStore({
       },
       // jbActivity: jbActivity,
       jbActivity: {},
+      // jbEndpoints: jbEndpoints,
       jbEndpoints: {},
       // jbTokens: jbTokens,
       jbTokens: {},
