@@ -3,7 +3,13 @@
 </template>
 
 <style>
-  @import 'bulma/css/bulma.css';
+@import 'bulma/css/bulma.css';
+
+.input,
+.textarea,
+.select select {
+  border-radius: 2px;
+}
 </style>
 
 <script>
