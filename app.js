@@ -37,6 +37,9 @@ app.post('/validate', require('./routes/validate'));
 app.post('/publish', require('./routes/publish'));
 app.post('/execute', require('./routes/execute'));
 
+// Configure proxy route
+app.use('/proxy', require('./routes/proxy'));
+
 // Configure client route
 app.use(history());
 app.use(express.static(`${__dirname}/dist/`));
