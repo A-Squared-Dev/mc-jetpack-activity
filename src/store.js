@@ -11,14 +11,20 @@ export const store = createStore({
         config_type: null,
         validation_email: '',
         validation_types: [],
-        upsert_externalKey: '',
+        upsert_dataExtension: {},
+        upsert_dataExtensionFields: [],
         upsert_dataAttributes: [{
           key: null,
+          type: null,
+          required: null,
           value: null
         }],
-        entry_eventDefinitionKey: '',
+        entry_eventDefinition: {},
+        entry_eventDefinitionFields: [],
         entry_dataAttributes: [{
           key: null,
+          type: null,
+          required: null,
           value: null
         }],
         entry_contactKey: '',

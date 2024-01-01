@@ -65,7 +65,11 @@ const json = {
             dataType: 'text',
             direction: 'in'
           },
-          upsert_externalKey: {
+          upsert_dataExtension: {
+            dataType: 'text',
+            direction: 'in'
+          },
+          upsert_dataExtensionFields: {
             dataType: 'text',
             direction: 'in'
           },
@@ -73,7 +77,11 @@ const json = {
             dataType: 'text',
             direction: 'in'
           },
-          entry_eventDefinitionKey: {
+          entry_eventDefinition: {
+            dataType: 'text',
+            direction: 'in'
+          },
+          entry_eventDefinitionFields: {
             dataType: 'text',
             direction: 'in'
           },
