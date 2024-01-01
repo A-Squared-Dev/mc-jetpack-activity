@@ -76,7 +76,7 @@ Adding a server-to-server component allows our server to interact with Marketing
 5. Click Next.
 6. Set the properties for the integration, including scopes.
     - Automation > Journeys: *Read*
-    - Data > Data Extensions: *Write*
+    - Data > Data Extensions: *Read*, *Write*
 7. Click Save.
 
 > Note the `SFMC_MID` and `SFMC_TENANT` as these are consistently used across integrations, as well as the CLIENT KEY and CLIENT SECRET generated as part of this integration for use as the `SFMC_CLIENT` and `SFMC_SECRET` environment variables.
