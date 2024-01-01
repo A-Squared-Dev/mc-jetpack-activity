@@ -5,10 +5,10 @@
         <typeTiles />
       </div>
 
-      <validateEmail v-if="config_type === 1" />
-      <upsertDE v-if="config_type === 2" />
-      <entryEvent v-if="config_type === 3" />
-      <deleteContact v-if="config_type === 4" />
+      <validateEmail v-if="configType === 1" />
+      <upsertDE v-if="configType === 2" />
+      <entryEvent v-if="configType === 3" />
+      <deleteContact v-if="configType === 4" />
 
       <div v-if="isDevelopment">
         <div class="field is-grouped is-grouped-centered">
@@ -61,7 +61,7 @@ export default {
     }
   },
   computed: {
-    config_type: {
+    configType: {
       get () {
         return this.$store.state.configModal.config_type;
       }
