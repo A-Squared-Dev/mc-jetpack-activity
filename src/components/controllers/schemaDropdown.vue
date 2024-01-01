@@ -7,7 +7,7 @@
 
       <option selected disabled hidden value="" v-if="!optionsLoaded && !optionsCount">Loading...</option>
       <option selected disabled hidden value="" v-if="!optionsArray.length">No fields available...</option>
-      <option selected disabled hidden value="" v-if="optionsArray.length">Select a field...</option>
+      <option selected disabled value="" v-if="optionsArray.length">Select a field...</option>
 
       <option v-for="option in optionsArray" :value="option.key" :key="option.key" :selected="option.key === modelValue">
         {{ option.name }}
