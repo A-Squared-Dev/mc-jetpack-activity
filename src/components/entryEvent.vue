@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <attributeRepeater :dataAttributes="entry_dataAttributes" :errorObject="this.v$.entry_dataAttributes" />
+  <attributeRepeater :dataFields="entry_eventDefinitionFields" :dataAttributes="entry_dataAttributes" :errorObject="this.v$.entry_dataAttributes" />
 
   <div class="field">
     <label class="label">Contact Key</label>
@@ -27,13 +27,21 @@ export default {
   },
   components: { attributeRepeater },
   computed: {
-    entry_eventDefinitionKey: {
+    entry_eventDefinition: {
       get () {
-        return this.$store.state.configModal.entry_eventDefinitionKey;
+        return this.$store.state.configModal.entry_eventDefinition;
       },
       set (value) {
-        this.$store.commit('updateConfigModal', { key: 'entry_eventDefinitionKey', value });
-        this.v$.entry_eventDefinitionKey.$touch();
+        this.$store.commit('updateConfigModal', { key: 'entry_eventDefinition', value });
+        this.v$.entry_eventDefinition.$touch();
+      }
+    },
+    entry_eventDefinitionFields: {
+      get () {
+        return this.$store.state.configModal.entry_eventDefinitionFields;
+      },
+      set (value) {
+        this.$store.commit('updateConfigModal', { key: 'entry_eventDefinitionFields', value });
       }
     },
     entry_dataAttributes: {
@@ -57,7 +65,7 @@ export default {
   },
   validations () {
     return {
-      entry_eventDefinitionKey: { required },
+      entry_eventDefinition: { required },
       entry_dataAttributes: {
         $each: helpers.forEach({
           key: { required },

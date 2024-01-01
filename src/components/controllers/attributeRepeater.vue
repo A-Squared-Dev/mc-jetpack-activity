@@ -1,5 +1,5 @@
 <template>
-  <table class="table is-fullwidth mb-0" v-if="dataAttributes.length > 0">
+  <table class="table is-fullwidth mb-0" v-if="dataFields.length > 0">
     <thead>
       <tr>
         <th colspan="2">Attribute</th>
@@ -10,7 +10,19 @@
       <tr v-for="(attribute, index) in dataAttributes" :key="index">
         <td style="width: 50%;">
           <div class="control">
-            <input class="input is-small" type="text" v-model="attribute.key" :class="[ errorObject.$each.$response.$errors[index].key.length ? 'is-danger' : '' ]" />
+            <div class="select is-small is-fullwidth" :class="[ errorObject.$each.$response.$errors[index].key.length > 0 ? 'is-danger' : '' ]">
+              <select v-model="attribute.key" :disabled="attribute.required === 'true'" @change="selectAttribute">
+                <option :selected="!attribute.key" disabled value="">Select a field...</option>
+
+                <option v-if="attribute.key" :selected="true">
+                  {{ attribute.key }}
+                </option>
+
+                <option v-for="option in distinctDataFields" :value="option.Name" :key="option.Name">
+                  {{ option.Name }}
+                </option>
+              </select>
+            </div>
           </div>
         </td>
         <td style="vertical-align: middle;">&#10141;</td>
@@ -28,7 +40,7 @@
       <tr>
         <td colspan="4" style="padding-right: 0px;">
           <div class="buttons is-right">
-            <button class="button is-small is-link is-light" v-on:click="addAttribute" :disabled="errorObject.$invalid">Add Attribute</button>
+            <button class="button is-small is-link is-light" v-on:click="addAttribute" :disabled="errorObject.$invalid || distinctDataFields.length === 0">Add Attribute</button>
           </div>
         </td>
       </tr>
@@ -59,20 +71,46 @@ fieldset[disabled] .button.is-link {
 
 <script>
 export default {
-  props: [ 'dataAttributes', 'errorObject' ],
+  props: [ 'dataFields', 'dataAttributes', 'errorObject' ],
+  computed: {
+    distinctDataFields: {
+      get () {
+        return this.dataFields.filter(a => !this.dataAttributes.some(b => b.key === a.Name));
+      }
+    }
+  },
   methods: {
     addAttribute (element) {
       element.preventDefault();
 
       this.dataAttributes.push({
-        key: '',
-        value: ''
+        key: null,
+        type: null,
+        required: null,
+        value: null
       });
     },
     deleteAttribute (index, element) {
       element.preventDefault();
+      element.target.blur();
 
       this.dataAttributes.splice(index, 1);
+    },
+    selectAttribute (element) {
+      var currentValue = element.target.value;
+      var dataFields = this.dataFields;
+      var dataAttributes = this.dataAttributes;
+
+      var thisObject = dataAttributes.find(object => object.key === currentValue);
+      var sourceObject = dataFields.find(object => object.Name === currentValue);
+      var objectIndex = dataAttributes.findIndex(object => object === thisObject);
+
+      this.dataAttributes[objectIndex] = {
+        key: thisObject.key,
+        type: sourceObject.FieldType,
+        required: sourceObject.IsRequired,
+        value: thisObject.value
+      }
     }
   }
 }

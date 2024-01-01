@@ -6,7 +6,7 @@
     </div>
   </div>
 
-  <attributeRepeater :dataAttributes="upsert_dataAttributes" :errorObject="this.v$.upsert_dataAttributes" />
+  <attributeRepeater :dataFields="upsert_dataExtensionFields" :dataAttributes="upsert_dataAttributes" :errorObject="this.v$.upsert_dataAttributes" />
 </template>
 
 <script>
@@ -20,13 +20,21 @@ export default {
   },
   components: { attributeRepeater },
   computed: {
-    upsert_externalKey: {
+    upsert_dataExtension: {
       get () {
-        return this.$store.state.configModal.upsert_externalKey;
+        return this.$store.state.configModal.upsert_dataExtension;
       },
       set (value) {
-        this.$store.commit('updateConfigModal', { key: 'upsert_externalKey', value });
-        this.v$.upsert_externalKey.$touch();
+        this.$store.commit('updateConfigModal', { key: 'upsert_dataExtension', value });
+        this.v$.upsert_dataExtension.$touch();
+      }
+    },
+    upsert_dataExtensionFields: {
+      get () {
+        return this.$store.state.configModal.upsert_dataExtensionFields;
+      },
+      set (value) {
+        this.$store.commit('updateConfigModal', { key: 'upsert_dataExtensionFields', value });
       }
     },
     upsert_dataAttributes: {
@@ -41,7 +49,7 @@ export default {
   },
   validations () {
     return {
-      upsert_externalKey: { required },
+      upsert_dataExtension: { required },
       upsert_dataAttributes: {
         $each: helpers.forEach({
           key: { required },
