@@ -1,8 +1,8 @@
 <template>
   <div class="field">
-    <label class="label">Event Definition Key</label>
+    <label class="label">Event Definition</label>
     <div class="control">
-      <input class="input is-small" type="text" v-model="entry_eventDefinitionKey" :class="[ this.v$.entry_eventDefinitionKey.$errors.length ? 'is-danger' : '' ]" />
+      <eventDefinitionSearch :eventDefinition="entry_eventDefinition" @update:eventDefinition="updateEventDefinition" @update:eventDefinitionFields="updateEventDefinitionFields" :errorObject="this.v$.entry_eventDefinition" />
     </div>
   </div>
 
@@ -17,6 +17,7 @@
 </template>
 
 <script>
+import eventDefinitionSearch from '@/components/controllers/eventDefinitionSearch';
 import attributeRepeater from '@/components/controllers/attributeRepeater';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required } from '@vuelidate/validators';
@@ -25,7 +26,10 @@ export default {
   setup () {
     return { v$: useVuelidate() }
   },
-  components: { attributeRepeater },
+  components: {
+    eventDefinitionSearch,
+    attributeRepeater
+  },
   computed: {
     entry_eventDefinition: {
       get () {
@@ -60,6 +64,42 @@ export default {
       set (value) {
         this.$store.commit('updateConfigModal', { key: 'entry_contactKey', value });
         this.v$.entry_contactKey.$touch();
+      }
+    }
+  },
+  methods: {
+    updateEventDefinition (value) {
+      this.entry_eventDefinition = value;
+      this.entry_eventDefinitionFields = []
+      this.entry_dataAttributes = [{
+        key: null,
+        type: null,
+        required: null,
+        value: null
+      }]
+    },
+    updateEventDefinitionFields (value) {
+      this.entry_eventDefinitionFields = value;
+
+      var requiredFields = []
+
+      if (value.length > 0) {
+        for (let i = 0; i < value.length; i++) {
+          if (value[i].IsRequired === 'true') {
+            requiredFields.push(value[i]);
+          }
+        }
+      }
+
+      if (requiredFields.length > 0) {
+        for (let i = 0; i < requiredFields.length; i++) {
+          this.entry_dataAttributes = [{
+            key: requiredFields[i].Name,
+            type: requiredFields[i].FieldType,
+            required: requiredFields[i].IsRequired,
+            value: null
+          }]
+        }
       }
     }
   },
