@@ -1,8 +1,5 @@
 <template>
   <section class="section pt-5">
-    <input @keyup="searchDEs" />
-    <pre>{{ this.$data }}</pre>
-
     <form id="configForm">
       <div class="field">
         <typeTiles />
@@ -60,9 +57,7 @@ export default {
   },
   data () {
     return {
-      isDevelopment: NODE_ENV === 'development',
-      searchTerm: '',
-      searchResults: []
+      isDevelopment: NODE_ENV === 'development'
     }
   },
   computed: {
@@ -82,16 +77,6 @@ export default {
       element.preventDefault();
 
       this.clickedNext();
-    },
-    async searchDEs () {
-      try {
-        const request = await fetch('https://mc.s50.marketingcloudapps.com/contactsmeta/fuelapi/data-internal/v1/customobjects?retrievalType=1&$page=1&$pagesize=25&$orderBy=modifiedDate%20DESC%20&$search=%25mo_file%25');
-        const response = await request.json();
-
-        console.log(response);
-      } catch (error) {
-        console.error(error);
-      }
     }
   }
 }
