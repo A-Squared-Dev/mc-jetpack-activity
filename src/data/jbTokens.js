@@ -8,4 +8,4 @@ const jbTokens = {
   UID: 951827403
 }
 
-module.exports = jbTokens;
+export default jbTokens;

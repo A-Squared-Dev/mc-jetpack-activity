@@ -30,4 +30,4 @@ const jbSchema = {
   ]
 }
 
-module.exports = jbSchema;
+export default jbSchema;

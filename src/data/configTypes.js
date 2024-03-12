@@ -21,4 +21,4 @@ const configTypes = [
   }
 ]
 
-module.exports = configTypes;
+export default configTypes;

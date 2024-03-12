@@ -7,4 +7,4 @@ const jbEndpoints = {
   authTSSD: "https://mc8bjsqf9zy3-78utw1plm5dv2gh.auth.marketingcloudapis.com"
 }
 
-module.exports = jbEndpoints;
+export default jbEndpoints;

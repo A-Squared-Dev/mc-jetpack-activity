@@ -108,4 +108,4 @@ const jbActivity = {
   errors: null
 }
 
-module.exports = jbActivity;
+export default jbActivity;
