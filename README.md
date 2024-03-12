@@ -44,8 +44,8 @@ npm start
 | NODE_ENV | Environment identifier used for conditional logic. | ❌ | staging |
 | NODE_VERSION | Required depending on hosting. | 🤔 | 18.15.0 |
 | PORT | Express server port. | ❌ |  |
-| VUE_APP_URL | Express server URL. | ✅ | https://xyz.onrender.com/ |
-| VUE_APP_TITLE | Journey Builder activity name. | ✅ | Jetpack [Staging] |
+| VITE_APP_URL | Express server URL. | ✅ | https://xyz.onrender.com/ |
+| VITE_APP_TITLE | Journey Builder activity name. | ✅ | Jetpack [Staging] |
 | SFMC_MID |  Business Unit MID(s) where the Installed Packaged is enabled. | ✅ | 500042165 |
 | SFMC_TENANT |  Business Unit Tenant Subdomain(s). | ✅ | mcvnkblwyrzgidx3m-u2qpk-tsfh |
 | SFMC_CLIENT |  Installed Package Client ID(s). | ✅ | zp9hxgqo84e2nyz26rpkp3m9 |
@@ -86,9 +86,9 @@ Adding a journey builder activity component enables the node to be used in the c
 
 1. Under Components, click Add Component.
 2. Select Journey Builder Activity.
-3. Give the activity a name - for simplicity, use the same value as the `VUE_APP_TITLE` environment variable.
+3. Give the activity a name - for simplicity, use the same value as the `VITE_APP_TITLE` environment variable.
 4. Select a category to determine which section the activity appears under in the canvas.
-5. Enter the Endpoint URL, which is the same as the `VUE_APP_URL` envrionment variable.
+5. Enter the Endpoint URL, which is the same as the `VITE_APP_URL` envrionment variable.
 6. Click Save.
 
 ### Create a Data Extension:
@@ -129,7 +129,7 @@ In Marketing Cloud, go to *Contact Builder | Data Extensions*:
 From the Treblle dashboard, click on [create a new project](https://app.treblle.com/projects/create):
 
 1. Give the project a name.
-2. Enter the Base URL, which is the same as the `VUE_APP_URL` envrionment variable.
+2. Enter the Base URL, which is the same as the `VITE_APP_URL` envrionment variable.
 3. Select Node as the platform.
 4. Select the relevant environment, based on the `NODE_ENV` environment variable.
 5. Click Create Project.
