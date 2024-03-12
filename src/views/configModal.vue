@@ -30,12 +30,12 @@
 </template>
 
 <script>
-import customActivity from '@/mixins/customActivity';
-import typeTiles from '@/components/typeTiles';
-import validateEmail from '@/components/validateEmail';
-import upsertDE from '@/components/upsertDE';
-import entryEvent from '@/components/entryEvent';
-import deleteContact from '@/components/deleteContact';
+import customActivity from '../mixins/customActivity';
+import typeTiles from '../components/typeTiles.vue';
+import validateEmail from '../components/validateEmail.vue';
+import upsertDE from '../components/upsertDE.vue';
+import entryEvent from '../components/entryEvent.vue';
+import deleteContact from '../components/deleteContact.vue';
 import { useVuelidate } from '@vuelidate/core';
 
 const NODE_ENV = process.env.NODE_ENV || 'development';

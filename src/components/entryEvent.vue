@@ -17,8 +17,8 @@
 </template>
 
 <script>
-import eventDefinitionSearch from '@/components/controllers/eventDefinitionSearch';
-import attributeRepeater from '@/components/controllers/attributeRepeater';
+import eventDefinitionSearch from '../components/controllers/eventDefinitionSearch.vue';
+import attributeRepeater from '../components/controllers/attributeRepeater.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required } from '@vuelidate/validators';
 

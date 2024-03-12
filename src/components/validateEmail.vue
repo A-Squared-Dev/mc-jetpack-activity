@@ -42,7 +42,7 @@
 </style>
 
 <script>
-import schemaDropdown from '@/components/controllers/schemaDropdown';
+import schemaDropdown from '../components/controllers/schemaDropdown.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 

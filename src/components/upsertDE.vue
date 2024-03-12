@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import dataExtensionSearch from '@/components/controllers/dataExtensionSearch';
-import attributeRepeater from '@/components/controllers/attributeRepeater';
+import dataExtensionSearch from '../components/controllers/dataExtensionSearch.vue';
+import attributeRepeater from '../components/controllers/attributeRepeater.vue';
 import { useVuelidate } from '@vuelidate/core';
 import { helpers, required } from '@vuelidate/validators';
 
