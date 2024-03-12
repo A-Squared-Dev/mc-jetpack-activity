@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as xml2json from 'xml-js';
 
-const VITE_APP_URL = process.env.VITE_APP_URL.replace(/\/+$/, '');
+const VITE_APP_URL = import.meta.env.VITE_APP_URL.replace(/\/+$/, '');
 
 export default {
   methods: {

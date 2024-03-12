@@ -2,7 +2,7 @@ import Postmonger from 'postmonger';
 import querystring from 'querystring';
 
 // Required environment variable
-const VITE_APP_URL = process.env.VITE_APP_URL.replace(/\/+$/, '');
+const VITE_APP_URL = import.meta.env.VITE_APP_URL.replace(/\/+$/, '');
 
 export default {
   components: { Postmonger },

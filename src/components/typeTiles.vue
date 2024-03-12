@@ -39,7 +39,7 @@ a.box.disabled {
 </style>
 
 <script>
-import * as configTypes from '../data/configTypes';
+import configTypes from '../data/configTypes';
 import { useVuelidate } from '@vuelidate/core';
 import { required } from '@vuelidate/validators';
 
