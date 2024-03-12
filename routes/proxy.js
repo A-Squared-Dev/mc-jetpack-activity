@@ -3,9 +3,9 @@ const cors = require('cors');
 const request = require('request');
 
 const NODE_ENV = process.env.NODE_ENV || 'development';
-const VUE_APP_URL = process.env.VUE_APP_URL.replace(/\/+$/, '');
+const VITE_APP_URL = process.env.VITE_APP_URL.replace(/\/+$/, '');
 
-const whitelist = [ VUE_APP_URL ]
+const whitelist = [ VITE_APP_URL ]
 const proxy = express.Router({ mergeParams: true });
 
 if (NODE_ENV === 'development') {

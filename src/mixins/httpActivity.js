@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as xml2json from 'xml-js';
 
-const VUE_APP_URL = process.env.VUE_APP_URL.replace(/\/+$/, '');
+const VITE_APP_URL = process.env.VITE_APP_URL.replace(/\/+$/, '');
 
 export default {
   methods: {
@@ -27,7 +27,7 @@ export default {
           </soapenv:Body>
         </soapenv:Envelope>`;
 
-      return axios.post(`${VUE_APP_URL}/proxy/https://${endpointSubdomain}.soap.marketingcloudapis.com/Service.asmx`, envelope, {
+      return axios.post(`${VITE_APP_URL}/proxy/https://${endpointSubdomain}.soap.marketingcloudapis.com/Service.asmx`, envelope, {
           headers: {
             'Content-Type': 'text/xml',
             SOAPAction: 'Retrieve'
@@ -62,7 +62,7 @@ export default {
           </soapenv:Body>
         </soapenv:Envelope>`;
 
-      return axios.post(`${VUE_APP_URL}/proxy/https://${endpointSubdomain}.soap.marketingcloudapis.com/Service.asmx`, envelope, {
+      return axios.post(`${VITE_APP_URL}/proxy/https://${endpointSubdomain}.soap.marketingcloudapis.com/Service.asmx`, envelope, {
           headers: {
             'Content-Type': 'text/xml',
             SOAPAction: 'Retrieve'
@@ -100,7 +100,7 @@ export default {
       return results;
     },
     async eventDefinitionSearch (accessToken, endpointBase, searchTerm) {
-      return axios.get(`${VUE_APP_URL}/proxy/${endpointBase}/interaction/v1/eventDefinitions?name=${searchTerm}&mode=1&type=APIEvent`, { headers: { Authorization: `Bearer ${accessToken}` } })
+      return axios.get(`${VITE_APP_URL}/proxy/${endpointBase}/interaction/v1/eventDefinitions?name=${searchTerm}&mode=1&type=APIEvent`, { headers: { Authorization: `Bearer ${accessToken}` } })
         .then((response) => {
           var responseItems = response.data.items;
           var validItems = []
